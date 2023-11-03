@@ -1,15 +1,15 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import 'package:flutter_local_storages/di/injection.dart';
-import 'package:flutter_local_storages/domain/isar/isar_char.dart';
+import 'package:flutter_local_storages/domain/hive/hive_char.dart';
 import 'package:flutter_local_storages/domain/character/character.dart';
-import 'package:flutter_local_storages/infrastructure/local/isar/repository/isar_repository.dart';
+import 'package:flutter_local_storages/infrastructure/local/hive/repository/hive_repository.dart';
 import 'package:flutter_local_storages/infrastructure/remote/repository/character_repository.dart';
 
-part 'isar_provider.g.dart';
+part 'hive_provider.g.dart';
 
 @riverpod
-class IsarChars extends _$IsarChars {
+class HiveChars extends _$HiveChars {
   final characters = <Character>[];
 
   @override
@@ -17,11 +17,11 @@ class IsarChars extends _$IsarChars {
 
   Future<List<Character>> _getLocalData() async {
     characters.clear();
-    var isarChars = await locator<IIsarRepository>().getIsarCharacters();
+    var hiveChars = await locator<IHiveRepository>().getHiveCharacters();
 
-    if (isarChars.isNotEmpty) {
-      for (var isarChar in isarChars) {
-        characters.add(isarChar.toBase());
+    if (hiveChars.isNotEmpty) {
+      for (var hiveChar in hiveChars) {
+        characters.add(hiveChar.toBase());
       }
     }
     return characters;
@@ -30,7 +30,7 @@ class IsarChars extends _$IsarChars {
   Future<void> syncRemote() async {
     state = const AsyncData([]);
     var remoteChars = await locator<ICharacterRepository>().getCharacters();
-    await locator<IIsarRepository>().saveIsarCharacters(remoteChars);
+    await locator<IHiveRepository>().saveHiveCharacters(remoteChars);
 
     state = AsyncValue.data(await _getLocalData());
   }

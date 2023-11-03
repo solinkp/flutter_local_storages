@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:flutter_local_storages/di/injection.dart' as di;
+import 'package:flutter_local_storages/core/constants/global.dart';
+import 'package:flutter_local_storages/domain/hive/hive_char.dart';
 import 'package:flutter_local_storages/presentation/screens/screens.dart';
+import 'package:flutter_local_storages/presentation/screens/hive_example/hive_screen.dart';
 import 'package:flutter_local_storages/infrastructure/local/isar/repository/isar_repository.dart';
 
 void main() async {
@@ -11,14 +15,22 @@ void main() async {
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   await di.configure();
 
-  //? isar init
+  //? local storages init
   await _initLocalServices();
 
   runApp(const ProviderScope(child: MyApp()));
 }
 
 Future<void> _initLocalServices() async {
+  //? Isar
   await di.locator.isReady<IIsarRepository>();
+  //? Hive
+  var dir = await globalAppDocDir;
+  await Hive.initFlutter(dir);
+  Hive.registerAdapter<HiveChar>(HiveCharAdapter());
+  Hive.registerAdapter(HiveStatusAdapter());
+  Hive.registerAdapter(HiveGenderAdapter());
+  await Hive.openBox<HiveChar>('HiveCharBox');
 }
 
 class MyApp extends StatelessWidget {
@@ -27,6 +39,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Local Storages',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal),
@@ -36,6 +49,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => const HomeScreen(),
         '/isar': (context) => const IsarScreen(),
+        '/hive': (context) => const HiveScreen(),
       },
     );
   }
