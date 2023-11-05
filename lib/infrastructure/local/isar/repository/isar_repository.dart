@@ -7,6 +7,7 @@ import 'package:flutter_local_storages/infrastructure/local/isar/data_source/isa
 abstract class IIsarRepository {
   Future<List<IsarChar>> getIsarCharacters();
   Future<void> saveIsarCharacters(List<Character> characters);
+  Future<void> cleanData();
 }
 
 @LazySingleton(as: IIsarRepository)
@@ -24,4 +25,7 @@ class IsarRepository implements IIsarRepository {
   Future<void> saveIsarCharacters(List<Character> characters) async {
     await _dataSource.saveIsarCharacters(characters);
   }
+
+  @override
+  Future<void> cleanData() async => await _dataSource.cleanData();
 }

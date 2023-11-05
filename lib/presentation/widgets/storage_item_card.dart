@@ -9,12 +9,31 @@ class StorageItemCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return InkWell(
       onTap: () => _goTo(context),
-      child: Card(
+      borderRadius: BorderRadius.circular(20),
+      splashColor: Colors.tealAccent.shade100,
+      child: Container(
         margin: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-        child: Center(child: Text(item.name)),
+        decoration: BoxDecoration(
+          shape: BoxShape.rectangle,
+          color: Colors.teal.shade200,
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Text(
+              item.name,
+              style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                    color: Colors.white,
+                  ),
+            ),
+            const SizedBox(height: 10),
+            const Icon(Icons.storage, color: Colors.white, size: 30),
+          ],
+        ),
       ),
     );
   }

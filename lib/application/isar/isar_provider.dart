@@ -34,4 +34,10 @@ class IsarChars extends _$IsarChars {
 
     state = AsyncValue.data(await _getLocalData());
   }
+
+  Future<void> cleanData() async {
+    state = const AsyncLoading();
+    await locator<IIsarRepository>().cleanData();
+    state = AsyncValue.data(await _getLocalData());
+  }
 }

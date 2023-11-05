@@ -7,6 +7,7 @@ import 'package:flutter_local_storages/infrastructure/local/objectbox/data_sourc
 abstract class IObjectboxRepository {
   Future<List<ObjChar>> getObjectboxCharacters();
   Future<void> saveObjectboxCharacters(List<Character> characters);
+  Future<void> cleanData();
 }
 
 @LazySingleton(as: IObjectboxRepository)
@@ -24,4 +25,7 @@ class ObjectboxRepository implements IObjectboxRepository {
   Future<void> saveObjectboxCharacters(List<Character> characters) async {
     await _dataSource.saveObjectboxCharacters(characters);
   }
+
+  @override
+  Future<void> cleanData() async => await _dataSource.cleanData();
 }

@@ -14,6 +14,7 @@ class HomeScreen extends StatelessWidget {
       title: 'Storages',
       body: CustomGridview(
         itemCount: storageItems.length,
+        axisCount: 2,
         builder: (index) => StorageItemCard(item: storageItems[index]),
       ),
     );

@@ -34,4 +34,10 @@ class HiveChars extends _$HiveChars {
 
     state = AsyncValue.data(await _getLocalData());
   }
+
+  Future<void> cleanData() async {
+    state = const AsyncLoading();
+    await locator<IHiveRepository>().cleanData();
+    state = AsyncValue.data(await _getLocalData());
+  }
 }

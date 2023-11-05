@@ -7,8 +7,6 @@ import 'package:flutter_local_storages/di/injection.dart' as di;
 import 'package:flutter_local_storages/core/constants/global.dart';
 import 'package:flutter_local_storages/domain/hive/hive_char.dart';
 import 'package:flutter_local_storages/presentation/screens/screens.dart';
-import 'package:flutter_local_storages/presentation/screens/hive_example/hive_screen.dart';
-import 'package:flutter_local_storages/presentation/screens/objectbox/objectbox_screen.dart';
 import 'package:flutter_local_storages/infrastructure/local/isar/repository/isar_repository.dart';
 import 'package:flutter_local_storages/infrastructure/local/objectbox/repository/objectbox_repository.dart';
 
@@ -46,7 +44,14 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Local Storages',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal),
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.teal,
+          onPrimary: Colors.white,
+        ),
+        appBarTheme: const AppBarTheme(
+          foregroundColor: Colors.white,
+          centerTitle: true,
+        ),
         useMaterial3: true,
       ),
       initialRoute: '/',

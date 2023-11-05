@@ -35,4 +35,10 @@ class ObjboxChars extends _$ObjboxChars {
 
     state = AsyncValue.data(await _getLocalData());
   }
+
+  Future<void> cleanData() async {
+    state = const AsyncLoading();
+    await locator<IObjectboxRepository>().cleanData();
+    state = AsyncValue.data(await _getLocalData());
+  }
 }

@@ -7,6 +7,7 @@ import 'package:flutter_local_storages/domain/objectbox/objbox_char.dart';
 abstract class IObjectboxDataSource {
   Future<List<ObjChar>> getObjectboxCharacters();
   Future<void> saveObjectboxCharacters(List<Character> characters);
+  Future<void> cleanData();
 }
 
 @LazySingleton(as: IObjectboxDataSource)
@@ -26,5 +27,11 @@ class ObjectboxDataSource implements IObjectboxDataSource {
     final box = _store.box<ObjChar>();
     await box.removeAllAsync();
     await box.putManyAsync([...characters.map((e) => ObjChar.fromBase(e))]);
+  }
+
+  @override
+  Future<void> cleanData() async {
+    final box = _store.box<ObjChar>();
+    await box.removeAllAsync();
   }
 }

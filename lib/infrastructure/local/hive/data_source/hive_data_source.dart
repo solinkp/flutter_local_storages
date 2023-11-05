@@ -7,6 +7,7 @@ import 'package:flutter_local_storages/domain/character/character.dart';
 abstract class IHiveDataSource {
   Future<List<HiveChar>> getHiveCharacters();
   Future<void> saveHiveCharacters(List<Character> characters);
+  Future<void> cleanData();
 }
 
 @LazySingleton(as: IHiveDataSource)
@@ -25,5 +26,11 @@ class HiveDataSource implements IHiveDataSource {
     var box = hive.box<HiveChar>('HiveCharBox');
     await box.clear();
     await box.addAll([...characters.map((e) => HiveChar.fromBase(e))]);
+  }
+
+  @override
+  Future<void> cleanData() async {
+    var box = hive.box<HiveChar>('HiveCharBox');
+    await box.clear();
   }
 }

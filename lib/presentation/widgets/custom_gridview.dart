@@ -16,7 +16,7 @@ class CustomGridview extends StatelessWidget {
   Widget build(BuildContext context) {
     return GridView.builder(
       shrinkWrap: true,
-      physics: const ClampingScrollPhysics(),
+      physics: const BouncingScrollPhysics(),
       padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
       itemCount: itemCount,
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(

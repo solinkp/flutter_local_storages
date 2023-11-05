@@ -7,6 +7,7 @@ import 'package:flutter_local_storages/domain/character/character.dart';
 abstract class IIsarDataSource {
   Future<List<IsarChar>> getIsarCharacters();
   Future<void> saveIsarCharacters(List<Character> characters);
+  Future<void> cleanData();
 }
 
 @LazySingleton(as: IIsarDataSource)
@@ -29,6 +30,13 @@ class IsarDataSource implements IIsarDataSource {
       for (var char in characters) {
         await _isar.isarChars.put(IsarChar.fromBase(char));
       }
+    });
+  }
+
+  @override
+  Future<void> cleanData() async {
+    await _isar.writeTxn(() async {
+      await _isar.isarChars.where().deleteAll();
     });
   }
 }

@@ -7,6 +7,7 @@ import 'package:flutter_local_storages/infrastructure/local/hive/data_source/hiv
 abstract class IHiveRepository {
   Future<List<HiveChar>> getHiveCharacters();
   Future<void> saveHiveCharacters(List<Character> characters);
+  Future<void> cleanData();
 }
 
 @LazySingleton(as: IHiveRepository)
@@ -24,4 +25,7 @@ class HiveRepository implements IHiveRepository {
   Future<void> saveHiveCharacters(List<Character> characters) async {
     await _dataSource.saveHiveCharacters(characters);
   }
+
+  @override
+  Future<void> cleanData() async => await _dataSource.cleanData();
 }
