@@ -28,7 +28,7 @@ class IsarChars extends _$IsarChars {
   }
 
   Future<void> syncRemote() async {
-    state = const AsyncData([]);
+    state = const AsyncLoading();
     var remoteChars = await locator<ICharacterRepository>().getCharacters();
     await locator<IIsarRepository>().saveIsarCharacters(remoteChars);
 

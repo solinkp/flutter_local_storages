@@ -27,6 +27,9 @@ class StorageItemCard extends StatelessWidget {
       case 'Hive':
         Navigator.of(context).pushNamed('/hive');
         break;
+      case 'Objectbox':
+        Navigator.of(context).pushNamed('/objectbox');
+        break;
       default:
         break;
     }

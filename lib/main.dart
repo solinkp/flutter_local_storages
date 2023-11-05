@@ -8,7 +8,9 @@ import 'package:flutter_local_storages/core/constants/global.dart';
 import 'package:flutter_local_storages/domain/hive/hive_char.dart';
 import 'package:flutter_local_storages/presentation/screens/screens.dart';
 import 'package:flutter_local_storages/presentation/screens/hive_example/hive_screen.dart';
+import 'package:flutter_local_storages/presentation/screens/objectbox/objectbox_screen.dart';
 import 'package:flutter_local_storages/infrastructure/local/isar/repository/isar_repository.dart';
+import 'package:flutter_local_storages/infrastructure/local/objectbox/repository/objectbox_repository.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -31,6 +33,8 @@ Future<void> _initLocalServices() async {
   Hive.registerAdapter(HiveStatusAdapter());
   Hive.registerAdapter(HiveGenderAdapter());
   await Hive.openBox<HiveChar>('HiveCharBox');
+  //? Objectbox
+  await di.locator.isReady<IObjectboxRepository>();
 }
 
 class MyApp extends StatelessWidget {
@@ -50,6 +54,7 @@ class MyApp extends StatelessWidget {
         '/': (context) => const HomeScreen(),
         '/isar': (context) => const IsarScreen(),
         '/hive': (context) => const HiveScreen(),
+        '/objectbox': (context) => const ObjectboxScreen(),
       },
     );
   }
