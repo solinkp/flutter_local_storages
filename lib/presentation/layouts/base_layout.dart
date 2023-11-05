@@ -25,6 +25,8 @@ class BaseLayout extends StatelessWidget {
         systemOverlayStyle: const SystemUiOverlayStyle(
           statusBarColor: Colors.transparent,
           statusBarIconBrightness: Brightness.light,
+          systemNavigationBarColor: Colors.teal,
+          systemNavigationBarIconBrightness: Brightness.light,
         ),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(title),
