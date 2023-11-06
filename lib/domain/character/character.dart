@@ -31,4 +31,26 @@ class Character {
         image: json['image'],
         origin: json['origin']['name'],
       );
+
+  factory Character.fromStoredJson(Map<String, dynamic> json) => Character(
+        id: json['id'],
+        name: json['name'],
+        status: Status.getStatusFromVal(json['status']),
+        species: json['species'],
+        type: json['type'],
+        gender: Gender.getGenderFromVal(json['gender']),
+        image: json['image'],
+        origin: json['origin'],
+      );
+
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'name': name,
+        'status': status.statusVal,
+        'species': species,
+        'type': type,
+        'gender': gender.genderVal,
+        'image': image,
+        'origin': origin,
+      };
 }

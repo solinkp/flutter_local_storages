@@ -8,6 +8,7 @@ import 'package:flutter_local_storages/core/constants/global.dart';
 import 'package:flutter_local_storages/domain/hive/hive_char.dart';
 import 'package:flutter_local_storages/presentation/screens/screens.dart';
 import 'package:flutter_local_storages/infrastructure/local/isar/repository/isar_repository.dart';
+import 'package:flutter_local_storages/infrastructure/local/sembast/repository/sembast_repository.dart';
 import 'package:flutter_local_storages/infrastructure/local/objectbox/repository/objectbox_repository.dart';
 
 void main() async {
@@ -33,6 +34,8 @@ Future<void> _initLocalServices() async {
   await Hive.openBox<HiveChar>('HiveCharBox');
   //? Objectbox
   await di.locator.isReady<IObjectboxRepository>();
+  //? Sembast
+  await di.locator.isReady<ISembastRepository>();
 }
 
 class MyApp extends StatelessWidget {
@@ -60,6 +63,7 @@ class MyApp extends StatelessWidget {
         '/isar': (context) => const IsarScreen(),
         '/hive': (context) => const HiveScreen(),
         '/objectbox': (context) => const ObjectboxScreen(),
+        '/sembast': (context) => const SembastScreen(),
       },
     );
   }

@@ -2,6 +2,8 @@ import 'package:dio/dio.dart';
 import 'package:isar/isar.dart';
 import 'package:path/path.dart';
 import 'package:get_it/get_it.dart';
+import 'package:sembast/sembast.dart';
+import 'package:sembast/sembast_io.dart';
 import 'package:injectable/injectable.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
@@ -59,5 +61,18 @@ abstract class RegisterModule {
       getObjectBoxModel(),
       directory: join(dir, "obx-example"),
     );
+  }
+
+  //* Register Sembast module
+  @lazySingleton
+  Future<Database> get sembastDB async {
+    var dir = await globalAppDocDir;
+    var databasePath = join(dir, "sembast.db");
+    return await databaseFactoryIo.openDatabase(databasePath);
+  }
+
+  @lazySingleton
+  Future<StoreRef> get sembCharacterStore async {
+    return intMapStoreFactory.store("character_store");
   }
 }
