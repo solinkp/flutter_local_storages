@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:isar/isar.dart';
 import 'package:path/path.dart';
 import 'package:get_it/get_it.dart';
+import 'package:cbl/cbl.dart' as cbl;
 import 'package:sembast/sembast.dart';
 import 'package:sembast/sembast_io.dart';
 import 'package:injectable/injectable.dart';
@@ -74,5 +75,15 @@ abstract class RegisterModule {
   @lazySingleton
   Future<StoreRef> get sembCharacterStore async {
     return intMapStoreFactory.store("character_store");
+  }
+
+  //* Register CBL module
+  @lazySingleton
+  Future<cbl.Database> get cblDB async {
+    var dir = await globalAppDocDir;
+    return await cbl.Database.openAsync(
+      'cbl-db',
+      cbl.DatabaseConfiguration(directory: dir),
+    );
   }
 }

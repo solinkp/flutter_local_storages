@@ -1,4 +1,6 @@
 PODS:
+  - cbl_flutter_ce (0.0.1):
+    - Flutter
   - Flutter (1.0.0)
   - isar_flutter_libs (1.0.0):
     - Flutter
@@ -11,6 +13,7 @@ PODS:
     - FlutterMacOS
 
 DEPENDENCIES:
+  - cbl_flutter_ce (from `.symlinks/plugins/cbl_flutter_ce/ios`)
   - Flutter (from `Flutter`)
   - isar_flutter_libs (from `.symlinks/plugins/isar_flutter_libs/ios`)
   - objectbox_flutter_libs (from `.symlinks/plugins/objectbox_flutter_libs/ios`)
@@ -21,6 +24,8 @@ SPEC REPOS:
     - ObjectBox
 
 EXTERNAL SOURCES:
+  cbl_flutter_ce:
+    :path: ".symlinks/plugins/cbl_flutter_ce/ios"
   Flutter:
     :path: Flutter
   isar_flutter_libs:
@@ -31,6 +36,7 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/path_provider_foundation/darwin"
 
 SPEC CHECKSUMS:
+  cbl_flutter_ce: b5cea5b595e5673db642f46284530594b910cce0
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
   isar_flutter_libs: b69f437aeab9c521821c3f376198c4371fa21073
   ObjectBox: e7ff611291a0663380e0736b46786bcd077294ff
