@@ -6,21 +6,36 @@ A simple implementation of various local storage options, using the Rick & Morty
 - Flutter: 3.13.9
 - Dart: 3.1.5
 
-# Databases & Dependencies
+# Databases Details
 
 ## Isar
+### Supported Platforms
+- ANDROID ✅
+- IOS ✅
+- WEB ❌
+### Dependencies
 - isar
 - isar_flutter_libs
 - isar_generator
 - path_provider
 
 ## Hive
+### Supported Platforms
+- ANDROID ✅
+- IOS ✅
+- WEB ✅
+### Dependencies
 - hive
 - hive_flutter
 - hive_generator
 - path_provider
 
 ## Objectbox
+### Supported Platforms
+- ANDROID ✅
+- IOS ✅
+- WEB ❌
+### Dependencies
 - objectbox
 - objectbox_flutter_libs
 - objectbox_generator
@@ -28,6 +43,11 @@ A simple implementation of various local storage options, using the Rick & Morty
 - path
 
 ## Sembast
+### Supported Platforms
+- ANDROID ✅
+- IOS ✅
+- WEB => sembast_web ✅
+### Dependencies
 - sembast
 - path_provider
 - path
