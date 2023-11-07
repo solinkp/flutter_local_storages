@@ -5,4 +5,5 @@ const List<StorageItem> storageItems = [
   StorageItem(name: 'Hive'),
   StorageItem(name: 'Objectbox'),
   StorageItem(name: 'Sembast'),
+  StorageItem(name: 'CBL'),
 ];

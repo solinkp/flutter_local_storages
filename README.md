@@ -51,3 +51,14 @@ A simple implementation of various local storage options, using the Rick & Morty
 - sembast
 - path_provider
 - path
+
+## CBL
+### Supported Platforms
+- ANDROID ✅
+- IOS ✅
+- WEB ❌
+### Dependencies
+- cbl
+- cbl_flutter
+- cbl_flutter_ce
+- path_provider

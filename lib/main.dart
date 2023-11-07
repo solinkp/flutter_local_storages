@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:cbl_flutter/cbl_flutter.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -7,6 +8,7 @@ import 'package:flutter_local_storages/di/injection.dart' as di;
 import 'package:flutter_local_storages/core/constants/global.dart';
 import 'package:flutter_local_storages/domain/hive/hive_char.dart';
 import 'package:flutter_local_storages/presentation/screens/screens.dart';
+import 'package:flutter_local_storages/infrastructure/local/cbl/repository/cbl_repository.dart';
 import 'package:flutter_local_storages/infrastructure/local/isar/repository/isar_repository.dart';
 import 'package:flutter_local_storages/infrastructure/local/sembast/repository/sembast_repository.dart';
 import 'package:flutter_local_storages/infrastructure/local/objectbox/repository/objectbox_repository.dart';
@@ -36,6 +38,9 @@ Future<void> _initLocalServices() async {
   await di.locator.isReady<IObjectboxRepository>();
   //? Sembast
   await di.locator.isReady<ISembastRepository>();
+  //? CBL
+  await CouchbaseLiteFlutter.init();
+  await di.locator.isReady<ICblRepository>();
 }
 
 class MyApp extends StatelessWidget {
@@ -65,6 +70,7 @@ class MyApp extends StatelessWidget {
         '/hive': (context) => const HiveScreen(),
         '/objectbox': (context) => const ObjectboxScreen(),
         '/sembast': (context) => const SembastScreen(),
+        '/cbl': (context) => const CblScreen(),
       },
     );
   }
