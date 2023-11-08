@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:isar/isar.dart';
 import 'package:path/path.dart';
+import 'package:realm/realm.dart';
 import 'package:get_it/get_it.dart';
 import 'package:cbl/cbl.dart' as cbl;
 import 'package:sembast/sembast.dart';
@@ -12,6 +13,7 @@ import 'package:flutter_local_storages/objectbox.g.dart';
 import 'package:flutter_local_storages/di/injection.config.dart';
 import 'package:flutter_local_storages/core/constants/global.dart';
 import 'package:flutter_local_storages/domain/isar/isar_char.dart';
+import 'package:flutter_local_storages/domain/realm/realm_char.dart';
 import 'package:flutter_local_storages/core/utils/interceptor/dio_interceptor.dart';
 
 //* Get instance of GetIt.
@@ -85,5 +87,12 @@ abstract class RegisterModule {
       'cbl-db',
       cbl.DatabaseConfiguration(directory: dir),
     );
+  }
+
+  //* Register Realm module
+  @lazySingleton
+  Future<Realm> get realm async {
+    var config = Configuration.local([RealmChar.schema]);
+    return Realm(config);
   }
 }
