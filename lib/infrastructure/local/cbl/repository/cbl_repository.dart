@@ -10,10 +10,10 @@ abstract class ICblRepository {
 }
 
 @LazySingleton(as: ICblRepository)
-class SembastRepository implements ICblRepository {
+class CblRepository implements ICblRepository {
   final ICblDataSource _dataSource;
 
-  const SembastRepository(this._dataSource);
+  const CblRepository(this._dataSource);
 
   @override
   Future<List<Character>> getCblCharacters() async {

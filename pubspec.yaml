@@ -32,6 +32,8 @@ dependencies:
   cbl: ^2.2.2
   cbl_flutter: ^2.0.9
   cbl_flutter_ce: ^2.2.2
+  # Realm
+  realm: ^1.5.0
 
 dev_dependencies:
   flutter_test:

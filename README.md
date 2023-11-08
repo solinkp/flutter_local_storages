@@ -62,3 +62,11 @@ A simple implementation of various local storage options, using the Rick & Morty
 - cbl_flutter
 - cbl_flutter_ce
 - path_provider
+
+## Realm
+### Supported Platforms
+- ANDROID ✅
+- IOS ✅
+- WEB ❌
+### Dependencies
+- realm

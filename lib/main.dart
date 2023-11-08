@@ -10,6 +10,7 @@ import 'package:flutter_local_storages/domain/hive/hive_char.dart';
 import 'package:flutter_local_storages/presentation/screens/screens.dart';
 import 'package:flutter_local_storages/infrastructure/local/cbl/repository/cbl_repository.dart';
 import 'package:flutter_local_storages/infrastructure/local/isar/repository/isar_repository.dart';
+import 'package:flutter_local_storages/infrastructure/local/realm/repository/realm_repository.dart';
 import 'package:flutter_local_storages/infrastructure/local/sembast/repository/sembast_repository.dart';
 import 'package:flutter_local_storages/infrastructure/local/objectbox/repository/objectbox_repository.dart';
 
@@ -41,6 +42,8 @@ Future<void> _initLocalServices() async {
   //? CBL
   await CouchbaseLiteFlutter.init();
   await di.locator.isReady<ICblRepository>();
+  //? Realm
+  await di.locator.isReady<IRealmRepository>();
 }
 
 class MyApp extends StatelessWidget {
@@ -71,6 +74,7 @@ class MyApp extends StatelessWidget {
         '/objectbox': (context) => const ObjectboxScreen(),
         '/sembast': (context) => const SembastScreen(),
         '/cbl': (context) => const CblScreen(),
+        '/realm': (context) => const RealmScreen(),
       },
     );
   }
