@@ -75,6 +75,9 @@ class MyApp extends StatelessWidget {
         '/sembast': (context) => const SembastScreen(),
         '/cbl': (context) => const CblScreen(),
         '/realm': (context) => const RealmScreen(),
+        '/sqflite': (context) => const SqfLiteScreen(),
+        '/floor': (context) => const FloorScreen(),
+        '/drift': (context) => const DriftScreen(),
       },
     );
   }

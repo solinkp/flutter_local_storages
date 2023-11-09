@@ -58,6 +58,15 @@ class StorageItemCard extends StatelessWidget {
       case 'Realm':
         Navigator.of(context).pushNamed('/realm');
         break;
+      case 'SQFLite':
+        Navigator.of(context).pushNamed('/sqflite');
+        break;
+      case 'Floor':
+        Navigator.of(context).pushNamed('/floor');
+        break;
+      case 'Drift':
+        Navigator.of(context).pushNamed('/drift');
+        break;
       default:
         break;
     }

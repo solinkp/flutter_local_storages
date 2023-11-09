@@ -12,10 +12,42 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BaseLayout(
       title: 'Storages',
-      body: CustomGridview(
-        itemCount: storageItems.length,
-        axisCount: 2,
-        builder: (index) => StorageItemCard(item: storageItems[index]),
+      body: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            const SizedBox(height: 10),
+            Text(
+              'NoSQL',
+              style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                    color: Colors.teal,
+                    decoration: TextDecoration.underline,
+                    decorationColor: Colors.teal,
+                  ),
+            ),
+            CustomGridview(
+              itemCount: noSqlStorageItems.length,
+              axisCount: 2,
+              builder: (index) => StorageItemCard(item: noSqlStorageItems[index]),
+            ),
+            const Divider(indent: 15, endIndent: 15),
+            const SizedBox(height: 10),
+            Text(
+              'SQL',
+              style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                    color: Colors.teal,
+                    decoration: TextDecoration.underline,
+                    decorationColor: Colors.teal,
+                  ),
+            ),
+            CustomGridview(
+              itemCount: sqlStorageItems.length,
+              axisCount: 2,
+              builder: (index) => StorageItemCard(item: sqlStorageItems[index]),
+            ),
+          ],
+        ),
       ),
     );
   }

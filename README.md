@@ -70,3 +70,24 @@ A simple implementation of various local storage options, using the Rick & Morty
 - WEB ❌
 ### Dependencies
 - realm
+
+## SQFLite
+### Supported Platforms
+- ANDROID ✅
+- IOS ✅
+- WEB ❌
+### Dependencies
+
+## Floor
+### Supported Platforms
+- ANDROID ✅
+- IOS ✅
+- WEB ❌
+### Dependencies
+
+## Drift
+### Supported Platforms
+- ANDROID ✅
+- IOS ✅
+- WEB ✅
+### Dependencies
