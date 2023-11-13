@@ -34,6 +34,8 @@ dependencies:
   cbl_flutter_ce: ^2.2.2
   # Realm
   realm: ^1.5.0
+  # SQFLite
+  sqflite: ^2.3.0
 
 dev_dependencies:
   flutter_test:

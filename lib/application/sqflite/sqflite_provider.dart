@@ -3,6 +3,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:flutter_local_storages/di/injection.dart';
 import 'package:flutter_local_storages/domain/character/character.dart';
 import 'package:flutter_local_storages/infrastructure/remote/repository/character_repository.dart';
+import 'package:flutter_local_storages/infrastructure/local/sqflite/repository/sqflite_repository.dart';
 
 part 'sqflite_provider.g.dart';
 
@@ -15,20 +16,20 @@ class SqfLiteChars extends _$SqfLiteChars {
 
   Future<List<Character>> _getLocalData() async {
     characters.clear();
-    //? get local
-    return characters;
+    return await locator<ISQFLiteRepository>().getSQFLiteCharacters();
   }
 
   Future<void> syncRemote() async {
     state = const AsyncLoading();
     var remoteChars = await locator<ICharacterRepository>().getCharacters();
-    //? save to local
+    await locator<ISQFLiteRepository>().saveSQFLiteCharacters(remoteChars);
+
     state = AsyncValue.data(await _getLocalData());
   }
 
   Future<void> cleanData() async {
     state = const AsyncLoading();
-    //? clean local
+    await locator<ISQFLiteRepository>().cleanData();
     state = AsyncValue.data(await _getLocalData());
   }
 }

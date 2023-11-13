@@ -8,6 +8,7 @@ import 'package:sembast/sembast.dart';
 import 'package:sembast/sembast_io.dart';
 import 'package:injectable/injectable.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:sqflite/sqflite.dart' as sqflite;
 
 import 'package:flutter_local_storages/objectbox.g.dart';
 import 'package:flutter_local_storages/di/injection.config.dart';
@@ -94,5 +95,31 @@ abstract class RegisterModule {
   Future<Realm> get realm async {
     var config = Configuration.local([RealmChar.schema]);
     return Realm(config);
+  }
+
+  //* Register SQFLite module
+  @lazySingleton
+  Future<sqflite.Database> get sqfliteDb async {
+    var databasesPath = await sqflite.getDatabasesPath();
+    String path = join(databasesPath, 'sqflite.db');
+    sqflite.Database database = await sqflite.openDatabase(
+      path,
+      version: 1,
+      onCreate: (sqflite.Database db, int version) async {
+        await db.execute(
+          '''CREATE TABLE Character (
+            id INTEGER PRIMARY KEY,
+            name TEXT,
+            status TEXT,
+            species TEXT,
+            type TEXT,
+            gender TEXT,
+            image TEXT,
+            origin TEXT
+          )''',
+        );
+      },
+    );
+    return database;
   }
 }
