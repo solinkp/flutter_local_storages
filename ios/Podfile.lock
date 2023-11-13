@@ -2,6 +2,9 @@ PODS:
   - cbl_flutter_ce (0.0.1):
     - Flutter
   - Flutter (1.0.0)
+  - FMDB (2.7.5):
+    - FMDB/standard (= 2.7.5)
+  - FMDB/standard (2.7.5)
   - isar_flutter_libs (1.0.0):
     - Flutter
   - ObjectBox (1.9.0)
@@ -11,6 +14,11 @@ PODS:
   - path_provider_foundation (0.0.1):
     - Flutter
     - FlutterMacOS
+  - realm (1.5.0):
+    - Flutter
+  - sqflite (0.0.3):
+    - Flutter
+    - FMDB (>= 2.7.5)
 
 DEPENDENCIES:
   - cbl_flutter_ce (from `.symlinks/plugins/cbl_flutter_ce/ios`)
@@ -18,9 +26,12 @@ DEPENDENCIES:
   - isar_flutter_libs (from `.symlinks/plugins/isar_flutter_libs/ios`)
   - objectbox_flutter_libs (from `.symlinks/plugins/objectbox_flutter_libs/ios`)
   - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
+  - realm (from `.symlinks/plugins/realm/ios`)
+  - sqflite (from `.symlinks/plugins/sqflite/ios`)
 
 SPEC REPOS:
   trunk:
+    - FMDB
     - ObjectBox
 
 EXTERNAL SOURCES:
@@ -34,14 +45,21 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/objectbox_flutter_libs/ios"
   path_provider_foundation:
     :path: ".symlinks/plugins/path_provider_foundation/darwin"
+  realm:
+    :path: ".symlinks/plugins/realm/ios"
+  sqflite:
+    :path: ".symlinks/plugins/sqflite/ios"
 
 SPEC CHECKSUMS:
   cbl_flutter_ce: b5cea5b595e5673db642f46284530594b910cce0
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
+  FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   isar_flutter_libs: b69f437aeab9c521821c3f376198c4371fa21073
   ObjectBox: e7ff611291a0663380e0736b46786bcd077294ff
   objectbox_flutter_libs: 0948d6feb7de4f7edaebc7a898b9e85b7fc2bc89
   path_provider_foundation: 29f094ae23ebbca9d3d0cec13889cd9060c0e943
+  realm: 9feb689dd34bd2883089a8dc62af210a2aad0d22
+  sqflite: 31f7eba61e3074736dff8807a9b41581e4f7f15a
 
 PODFILE CHECKSUM: 70d9d25280d0dd177a5f637cdb0f0b0b12c6a189
 

@@ -10,6 +10,7 @@ import 'package:flutter_local_storages/domain/hive/hive_char.dart';
 import 'package:flutter_local_storages/presentation/screens/screens.dart';
 import 'package:flutter_local_storages/infrastructure/local/cbl/repository/cbl_repository.dart';
 import 'package:flutter_local_storages/infrastructure/local/isar/repository/isar_repository.dart';
+import 'package:flutter_local_storages/infrastructure/local/floor/repository/floor_repository.dart';
 import 'package:flutter_local_storages/infrastructure/local/realm/repository/realm_repository.dart';
 import 'package:flutter_local_storages/infrastructure/local/sqflite/repository/sqflite_repository.dart';
 import 'package:flutter_local_storages/infrastructure/local/sembast/repository/sembast_repository.dart';
@@ -47,6 +48,8 @@ Future<void> _initLocalServices() async {
   await di.locator.isReady<IRealmRepository>();
   //? SQFLite
   await di.locator.isReady<ISQFLiteRepository>();
+  //? Floor
+  await di.locator.isReady<IFloorRepository>();
 }
 
 class MyApp extends StatelessWidget {

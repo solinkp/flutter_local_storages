@@ -49,7 +49,7 @@ class SQFLiteDataSource implements ISQFLiteDataSource {
 
   @override
   Future<void> cleanData() async {
-    _sqfliteDB.delete('Character');
+    await _sqfliteDB.delete('Character');
     // _sqfliteDB.rawDelete('DELETE FROM Character');
   }
 }
