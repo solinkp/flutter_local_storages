@@ -85,6 +85,9 @@ A simple implementation of various local storage options, using the Rick & Morty
 - IOS ✅
 - WEB ❌
 ### Dependencies
+- floor
+- sqflite
+- floor_generator
 
 ## Drift
 ### Supported Platforms

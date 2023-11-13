@@ -14,6 +14,7 @@ import 'package:flutter_local_storages/objectbox.g.dart';
 import 'package:flutter_local_storages/di/injection.config.dart';
 import 'package:flutter_local_storages/core/constants/global.dart';
 import 'package:flutter_local_storages/domain/isar/isar_char.dart';
+import 'package:flutter_local_storages/core/database/floor_db.dart';
 import 'package:flutter_local_storages/domain/realm/realm_char.dart';
 import 'package:flutter_local_storages/core/utils/interceptor/dio_interceptor.dart';
 
@@ -102,7 +103,7 @@ abstract class RegisterModule {
   Future<sqflite.Database> get sqfliteDb async {
     var databasesPath = await sqflite.getDatabasesPath();
     String path = join(databasesPath, 'sqflite.db');
-    sqflite.Database database = await sqflite.openDatabase(
+    return await sqflite.openDatabase(
       path,
       version: 1,
       onCreate: (sqflite.Database db, int version) async {
@@ -120,6 +121,11 @@ abstract class RegisterModule {
         );
       },
     );
-    return database;
+  }
+
+  //* Register Floor module
+  @lazySingleton
+  Future<AppDB> get floorDb async {
+    return await $FloorAppDB.databaseBuilder('floor_database.db').build();
   }
 }
