@@ -103,3 +103,16 @@ A simple implementation of various local storage options, using the Rick & Morty
 - drift_dev
 ### Conflicts
 Has conflicts with Floor 1.4.2 dependecies -> had to downgrade Floor to 1.4.1
+
+# Personal Ranking (2023)
+## NoSQL
+1. Isar
+2. Objectbox
+3. Sembast
+4. Realm
+5. Hive
+6. CBL
+## SQL
+1. Floor
+2. SQFLite
+3. Drift
