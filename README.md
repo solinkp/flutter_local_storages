@@ -95,3 +95,10 @@ A simple implementation of various local storage options, using the Rick & Morty
 - IOS ✅
 - WEB ✅
 ### Dependencies
+- drift
+- sqlite3_flutter_libs
+- path_provider
+- path
+- drift_dev
+### Conflicts
+Has conflicts with Floor 1.4.2 dependecies -> had to downgrade Floor to 1.4.1
