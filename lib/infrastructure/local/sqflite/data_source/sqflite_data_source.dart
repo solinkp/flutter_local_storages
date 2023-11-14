@@ -3,17 +3,17 @@ import 'package:injectable/injectable.dart';
 
 import 'package:flutter_local_storages/domain/character/character.dart';
 
-abstract class ISQFLiteDataSource {
+abstract class ISqfLiteDataSource {
   Future<List<Character>> getSQFLiteCharacters();
   Future<void> saveSQFLiteCharacters(List<Character> characters);
   Future<void> cleanData();
 }
 
-@LazySingleton(as: ISQFLiteDataSource)
-class SQFLiteDataSource implements ISQFLiteDataSource {
+@LazySingleton(as: ISqfLiteDataSource)
+class SqfLiteDataSource implements ISqfLiteDataSource {
   final Database _sqfliteDB;
 
-  const SQFLiteDataSource(this._sqfliteDB);
+  const SqfLiteDataSource(this._sqfliteDB);
 
   @override
   Future<List<Character>> getSQFLiteCharacters() async {

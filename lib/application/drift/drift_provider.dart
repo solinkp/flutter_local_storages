@@ -3,6 +3,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:flutter_local_storages/di/injection.dart';
 import 'package:flutter_local_storages/domain/character/character.dart';
 import 'package:flutter_local_storages/infrastructure/remote/repository/character_repository.dart';
+import 'package:flutter_local_storages/infrastructure/local/drift/repository/drift_repository.dart';
 
 part 'drift_provider.g.dart';
 
@@ -15,20 +16,27 @@ class DriftChars extends _$DriftChars {
 
   Future<List<Character>> _getLocalData() async {
     characters.clear();
-    //? get local
+    var driftChars = await locator<IDriftRepository>().getDriftCharacters();
+
+    if (driftChars.isNotEmpty) {
+      for (var driftChar in driftChars) {
+        characters.add(Character.fromStoredJson(driftChar.toJson()));
+      }
+    }
     return characters;
   }
 
   Future<void> syncRemote() async {
     state = const AsyncLoading();
     var remoteChars = await locator<ICharacterRepository>().getCharacters();
-    //? save to local
+    await locator<IDriftRepository>().saveDriftCharacters(remoteChars);
+
     state = AsyncValue.data(await _getLocalData());
   }
 
   Future<void> cleanData() async {
     state = const AsyncLoading();
-    //? clean local
+    await locator<IDriftRepository>().cleanData();
     state = AsyncValue.data(await _getLocalData());
   }
 }

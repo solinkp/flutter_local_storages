@@ -37,7 +37,10 @@ dependencies:
   # SQFLite
   sqflite: ^2.3.0
   # Floor
-  floor: ^1.4.2
+  floor: ^1.4.1
+  # Drift
+  drift: ^2.13.1
+  sqlite3_flutter_libs: ^0.5.18
 
 dev_dependencies:
   flutter_test:
@@ -56,6 +59,8 @@ dev_dependencies:
   objectbox_generator: ^2.3.1
   # Floor
   floor_generator: ^1.4.2
+  # Drift
+  drift_dev: ^2.13.2
 
 flutter:
   uses-material-design: true

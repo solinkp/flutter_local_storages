@@ -16,20 +16,20 @@ class SqfLiteChars extends _$SqfLiteChars {
 
   Future<List<Character>> _getLocalData() async {
     characters.clear();
-    return await locator<ISQFLiteRepository>().getSQFLiteCharacters();
+    return await locator<ISqfLiteRepository>().getSQFLiteCharacters();
   }
 
   Future<void> syncRemote() async {
     state = const AsyncLoading();
     var remoteChars = await locator<ICharacterRepository>().getCharacters();
-    await locator<ISQFLiteRepository>().saveSQFLiteCharacters(remoteChars);
+    await locator<ISqfLiteRepository>().saveSQFLiteCharacters(remoteChars);
 
     state = AsyncValue.data(await _getLocalData());
   }
 
   Future<void> cleanData() async {
     state = const AsyncLoading();
-    await locator<ISQFLiteRepository>().cleanData();
+    await locator<ISqfLiteRepository>().cleanData();
     state = AsyncValue.data(await _getLocalData());
   }
 }

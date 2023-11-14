@@ -15,6 +15,7 @@ import 'package:flutter_local_storages/di/injection.config.dart';
 import 'package:flutter_local_storages/core/constants/global.dart';
 import 'package:flutter_local_storages/domain/isar/isar_char.dart';
 import 'package:flutter_local_storages/core/database/floor_db.dart';
+import 'package:flutter_local_storages/core/database/drift_db.dart';
 import 'package:flutter_local_storages/domain/realm/realm_char.dart';
 import 'package:flutter_local_storages/core/utils/interceptor/dio_interceptor.dart';
 
@@ -128,4 +129,8 @@ abstract class RegisterModule {
   Future<AppDB> get floorDb async {
     return await $FloorAppDB.databaseBuilder('floor_database.db').build();
   }
+
+  //* Register Drift module
+  @lazySingleton
+  Future<DriftDB> get driftDb async => DriftDB();
 }
