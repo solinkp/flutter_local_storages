@@ -1,6 +1,5 @@
 # Generated Files
 *.freezed.dart
-*.config.dart
 *.g.dart
 *.gr.dart
 
