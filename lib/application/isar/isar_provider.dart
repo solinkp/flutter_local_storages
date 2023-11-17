@@ -1,7 +1,6 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import 'package:flutter_local_storages/di/injection.dart';
-import 'package:flutter_local_storages/domain/isar/isar_char.dart';
 import 'package:flutter_local_storages/domain/character/character.dart';
 import 'package:flutter_local_storages/infrastructure/local/isar/repository/isar_repository.dart';
 import 'package:flutter_local_storages/infrastructure/remote/repository/character_repository.dart';
@@ -17,14 +16,7 @@ class IsarChars extends _$IsarChars {
 
   Future<List<Character>> _getLocalData() async {
     characters.clear();
-    var isarChars = await locator<IIsarRepository>().getIsarCharacters();
-
-    if (isarChars.isNotEmpty) {
-      for (var isarChar in isarChars) {
-        characters.add(isarChar.toBase());
-      }
-    }
-    return characters;
+    return await locator<IIsarRepository>().getIsarCharacters();
   }
 
   Future<void> syncRemote() async {

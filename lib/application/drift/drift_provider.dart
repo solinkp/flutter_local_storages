@@ -16,14 +16,7 @@ class DriftChars extends _$DriftChars {
 
   Future<List<Character>> _getLocalData() async {
     characters.clear();
-    var driftChars = await locator<IDriftRepository>().getDriftCharacters();
-
-    if (driftChars.isNotEmpty) {
-      for (var driftChar in driftChars) {
-        characters.add(Character.fromStoredJson(driftChar.toJson()));
-      }
-    }
-    return characters;
+    return await locator<IDriftRepository>().getDriftCharacters();
   }
 
   Future<void> syncRemote() async {

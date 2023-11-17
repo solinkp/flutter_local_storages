@@ -5,7 +5,7 @@ import 'package:flutter_local_storages/domain/character/character.dart';
 import 'package:flutter_local_storages/infrastructure/local/hive/data_source/hive_data_source.dart';
 
 abstract class IHiveRepository {
-  Future<List<HiveChar>> getHiveCharacters();
+  Future<List<Character>> getHiveCharacters();
   Future<void> saveHiveCharacters(List<Character> characters);
   Future<void> cleanData();
 }
@@ -17,8 +17,13 @@ class HiveRepository implements IHiveRepository {
   const HiveRepository(this._dataSource);
 
   @override
-  Future<List<HiveChar>> getHiveCharacters() async {
-    return await _dataSource.getHiveCharacters();
+  Future<List<Character>> getHiveCharacters() async {
+    var characters = <Character>[];
+    var hiveChars = await _dataSource.getHiveCharacters();
+    if (hiveChars.isNotEmpty) {
+      characters.addAll(hiveChars.map((e) => e.toBase()));
+    }
+    return characters;
   }
 
   @override

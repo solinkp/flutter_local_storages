@@ -2,7 +2,6 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import 'package:flutter_local_storages/di/injection.dart';
 import 'package:flutter_local_storages/domain/character/character.dart';
-import 'package:flutter_local_storages/domain/objectbox/objbox_char.dart';
 import 'package:flutter_local_storages/infrastructure/remote/repository/character_repository.dart';
 import 'package:flutter_local_storages/infrastructure/local/objectbox/repository/objectbox_repository.dart';
 
@@ -17,15 +16,7 @@ class ObjboxChars extends _$ObjboxChars {
 
   Future<List<Character>> _getLocalData() async {
     characters.clear();
-    var objboxChars =
-        await locator<IObjectboxRepository>().getObjectboxCharacters();
-
-    if (objboxChars.isNotEmpty) {
-      for (var objboxChar in objboxChars) {
-        characters.add(objboxChar.toBase());
-      }
-    }
-    return characters;
+    return await locator<IObjectboxRepository>().getObjectboxCharacters();
   }
 
   Future<void> syncRemote() async {

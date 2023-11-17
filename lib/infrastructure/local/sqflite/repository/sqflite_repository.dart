@@ -17,7 +17,12 @@ class SqfLiteRepository implements ISqfLiteRepository {
 
   @override
   Future<List<Character>> getSQFLiteCharacters() async {
-    return await _dataSource.getSQFLiteCharacters();
+    var characters = <Character>[];
+    var sqfliteChars = await _dataSource.getSQFLiteCharacters();
+    if (sqfliteChars.isNotEmpty) {
+      characters.addAll(sqfliteChars.map((e) => Character.fromStoredJson(e)));
+    }
+    return characters;
   }
 
   @override

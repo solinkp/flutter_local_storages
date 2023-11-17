@@ -17,7 +17,12 @@ class CblRepository implements ICblRepository {
 
   @override
   Future<List<Character>> getCblCharacters() async {
-    return await _dataSource.getCblCharacters();
+    var characters = <Character>[];
+    var cblChars = await _dataSource.getCblCharacters();
+    if (cblChars.isNotEmpty) {
+      characters.addAll(cblChars.map((e) => Character.fromStoredJson(e)));
+    }
+    return characters;
   }
 
   @override

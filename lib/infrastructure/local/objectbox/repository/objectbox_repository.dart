@@ -5,7 +5,7 @@ import 'package:flutter_local_storages/domain/objectbox/objbox_char.dart';
 import 'package:flutter_local_storages/infrastructure/local/objectbox/data_source/objectbox_data_source.dart';
 
 abstract class IObjectboxRepository {
-  Future<List<ObjChar>> getObjectboxCharacters();
+  Future<List<Character>> getObjectboxCharacters();
   Future<void> saveObjectboxCharacters(List<Character> characters);
   Future<void> cleanData();
 }
@@ -17,8 +17,13 @@ class ObjectboxRepository implements IObjectboxRepository {
   const ObjectboxRepository(this._dataSource);
 
   @override
-  Future<List<ObjChar>> getObjectboxCharacters() async {
-    return await _dataSource.getObjectboxCharacters();
+  Future<List<Character>> getObjectboxCharacters() async {
+    var characters = <Character>[];
+    var objectboxChars = await _dataSource.getObjectboxCharacters();
+    if (objectboxChars.isNotEmpty) {
+      characters.addAll(objectboxChars.map((e) => e.toBase()));
+    }
+    return characters;
   }
 
   @override

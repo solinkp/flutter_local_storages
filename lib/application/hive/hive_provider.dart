@@ -1,7 +1,6 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import 'package:flutter_local_storages/di/injection.dart';
-import 'package:flutter_local_storages/domain/hive/hive_char.dart';
 import 'package:flutter_local_storages/domain/character/character.dart';
 import 'package:flutter_local_storages/infrastructure/local/hive/repository/hive_repository.dart';
 import 'package:flutter_local_storages/infrastructure/remote/repository/character_repository.dart';
@@ -17,14 +16,7 @@ class HiveChars extends _$HiveChars {
 
   Future<List<Character>> _getLocalData() async {
     characters.clear();
-    var hiveChars = await locator<IHiveRepository>().getHiveCharacters();
-
-    if (hiveChars.isNotEmpty) {
-      for (var hiveChar in hiveChars) {
-        characters.add(hiveChar.toBase());
-      }
-    }
-    return characters;
+    return await locator<IHiveRepository>().getHiveCharacters();
   }
 
   Future<void> syncRemote() async {

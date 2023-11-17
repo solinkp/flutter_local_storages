@@ -4,7 +4,7 @@ import 'package:injectable/injectable.dart';
 import 'package:flutter_local_storages/domain/character/character.dart';
 
 abstract class ISqfLiteDataSource {
-  Future<List<Character>> getSQFLiteCharacters();
+  Future<List<Map<String, dynamic>>> getSQFLiteCharacters();
   Future<void> saveSQFLiteCharacters(List<Character> characters);
   Future<void> cleanData();
 }
@@ -16,12 +16,12 @@ class SqfLiteDataSource implements ISqfLiteDataSource {
   const SqfLiteDataSource(this._sqfliteDB);
 
   @override
-  Future<List<Character>> getSQFLiteCharacters() async {
+  Future<List<Map<String, dynamic>>> getSQFLiteCharacters() async {
     List<Map<String, dynamic>> list = await _sqfliteDB.query('Character');
     // List<Map<String, dynamic>> list = await _sqfliteDB.rawQuery(
     //   'SELECT * FROM Character',
     // );
-    return list.map((e) => Character.fromStoredJson(e)).toList();
+    return list;
   }
 
   @override

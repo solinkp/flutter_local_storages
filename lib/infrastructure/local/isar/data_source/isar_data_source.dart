@@ -23,10 +23,8 @@ class IsarDataSource implements IIsarDataSource {
 
   @override
   Future<void> saveIsarCharacters(List<Character> characters) async {
+    await cleanData();
     await _isar.writeTxn(() async {
-      //? delete old
-      await _isar.isarChars.where().deleteAll();
-      //? save new
       for (var char in characters) {
         await _isar.isarChars.put(IsarChar.fromBase(char));
       }

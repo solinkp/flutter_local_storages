@@ -17,7 +17,12 @@ class SembastRepository implements ISembastRepository {
 
   @override
   Future<List<Character>> getSembastCharacters() async {
-    return await _dataSource.getSembastCharacters();
+    var characters = <Character>[];
+    var sembastChars = await _dataSource.getSembastCharacters();
+    if (sembastChars.isNotEmpty) {
+      characters.addAll(sembastChars.map((e) => Character.fromStoredJson(e)));
+    }
+    return characters;
   }
 
   @override

@@ -5,7 +5,7 @@ import 'package:flutter_local_storages/domain/character/character.dart';
 import 'package:flutter_local_storages/infrastructure/local/floor/data_source/floor_data_source.dart';
 
 abstract class IFloorRepository {
-  Future<List<FloorChar>> getFloorCharacters();
+  Future<List<Character>> getFloorCharacters();
   Future<void> saveFloorCharacters(List<Character> characters);
   Future<void> cleanData();
 }
@@ -17,8 +17,13 @@ class FloorRepository implements IFloorRepository {
   const FloorRepository(this._dataSource);
 
   @override
-  Future<List<FloorChar>> getFloorCharacters() async {
-    return await _dataSource.getFloorCharacters();
+  Future<List<Character>> getFloorCharacters() async {
+    var characters = <Character>[];
+    var floorChars = await _dataSource.getFloorCharacters();
+    if (floorChars.isNotEmpty) {
+      characters.addAll(floorChars.map((e) => e.toBase()));
+    }
+    return characters;
   }
 
   @override

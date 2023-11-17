@@ -4,7 +4,7 @@ import 'package:injectable/injectable.dart';
 import 'package:flutter_local_storages/domain/character/character.dart';
 
 abstract class ISembastDataSource {
-  Future<List<Character>> getSembastCharacters();
+  Future<List<Map<String, dynamic>>> getSembastCharacters();
   Future<void> saveSembastCharacters(List<Character> characters);
   Future<void> cleanData();
 }
@@ -17,11 +17,9 @@ class SembastDataSource implements ISembastDataSource {
   const SembastDataSource(this._sembastDB, this._sembCharacterStore);
 
   @override
-  Future<List<Character>> getSembastCharacters() async {
+  Future<List<Map<String, dynamic>>> getSembastCharacters() async {
     final snapshots = await _sembCharacterStore.find(_sembastDB);
-    return snapshots
-        .map((e) => Character.fromStoredJson(e.value as Map<String, dynamic>))
-        .toList();
+    return snapshots.map((e) => e.value as Map<String, dynamic>).toList();
   }
 
   @override

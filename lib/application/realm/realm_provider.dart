@@ -1,7 +1,6 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import 'package:flutter_local_storages/di/injection.dart';
-import 'package:flutter_local_storages/domain/realm/realm_char.dart';
 import 'package:flutter_local_storages/domain/character/character.dart';
 import 'package:flutter_local_storages/infrastructure/remote/repository/character_repository.dart';
 import 'package:flutter_local_storages/infrastructure/local/realm/repository/realm_repository.dart';
@@ -17,14 +16,7 @@ class RealmChars extends _$RealmChars {
 
   Future<List<Character>> _getLocalData() async {
     characters.clear();
-    var realmChars = await locator<IRealmRepository>().getRealmCharacters();
-
-    if (realmChars.isNotEmpty) {
-      for (var realmChar in realmChars) {
-        characters.add(realmChar.toBase());
-      }
-    }
-    return characters;
+    return await locator<IRealmRepository>().getRealmCharacters();
   }
 
   Future<void> syncRemote() async {
